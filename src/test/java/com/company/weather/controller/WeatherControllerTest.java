@@ -30,7 +30,7 @@ public class WeatherControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	public void testClientProfile() throws Exception {
+	public void testWeatherController() throws Exception {
 		String response ="Clear Weather";
 
 		Mockito.when(weatherService.getWeatherForecasting(Mockito.anyString())).thenReturn(response);
