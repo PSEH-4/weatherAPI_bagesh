@@ -23,6 +23,7 @@ import com.company.weather.service.WeatherService;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class WeatherControllerTest {
+	
 	@MockBean
 	private WeatherService weatherService;
 
@@ -35,12 +36,12 @@ public class WeatherControllerTest {
 
 		Mockito.when(weatherService.getWeatherForecasting(Mockito.anyString())).thenReturn(response);
 
-		final RequestBuilder builder = MockMvcRequestBuilders.get("/v1/forecast/paris");
+		final RequestBuilder builder = MockMvcRequestBuilders.get("/api/v1/forecast/paris");
 
 		final MvcResult mvcResult = mockMvc.perform(builder).andReturn();
 		final MockHttpServletResponse httpResponse = mvcResult.getResponse();
-
 		final String resultJson = httpResponse.getContentAsString();
+		
 		org.assertj.core.api.Assertions.assertThat(resultJson).isEqualTo(response);
 		assertEquals(HttpStatus.OK.value(), httpResponse.getStatus());
 	}
